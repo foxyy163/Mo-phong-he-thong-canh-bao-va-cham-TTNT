@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="240" viewBox="0 0 1200 240" role="img" aria-labelledby="title desc">
-  <title id="title">Collision Warning System Simulation</title>
-  <desc id="desc">Placeholder banner for the collision warning simulation project.</desc>
-  <rect width="1200" height="240" rx="24" fill="#0f172a"/>
-  <text x="60" y="110" fill="#fff" font-family="Arial, sans-serif" font-size="42" font-weight="700">Collision Warning System</text>
-  <text x="60" y="160" fill="#93c5fd" font-family="Arial, sans-serif" font-size="24">Python · Rule-Based AI · Streamlit</text>
-</svg>
