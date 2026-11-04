@@ -1,4 +1,4 @@
-# Hướng dẫn TV1 — Nhóm trưởng / Integration
+# Hướng dẫn TV1 — Integration
 
 - Điều phối tiến độ và theo dõi Issues.
 - Tích hợp các module, review và merge Pull Requests.
