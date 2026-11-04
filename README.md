@@ -153,7 +153,7 @@ Luồng xử lý cơ bản:
 
 ### Từ tuần 2 trở đi
 
-- Mỗi thành viên nhận Issue.
+- Mỗi thành viên theo flow từ issue week 1 tiếp tục làm các week sau.
 - Tạo branch riêng từ `main`.
 - Code và tự chạy test phần của mình.
 - Push branch lên GitHub.
