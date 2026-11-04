@@ -26,12 +26,11 @@
 4. [Kiến trúc dự án](#kiến-trúc-dự-án)
 5. [Luồng xử lý chính](#luồng-xử-lý-chính)
 6. [Công nghệ sử dụng](#công-nghệ-sử-dụng)
-7. [Cấu trúc thư mục](#cấu-trúc-thư-mục)
-8. [Phân công 5 thành viên](#phân-công-5-thành-viên)
-9. [Kế hoạch 4 tuần](#kế-hoạch-4-tuần)
-10. [Quy trình làm việc GitHub](#quy-trình-làm-việc-github)
-11. [Tiêu chí hoàn thành](#tiêu-chí-hoàn-thành)
-12. [Tài liệu trong docs](#tài-liệu-trong-docs)
+7. [Phân công 5 thành viên](#phân-công-5-thành-viên)
+8. [Kế hoạch 4 tuần](#kế-hoạch-4-tuần)
+9. [Quy trình làm việc GitHub](#quy-trình-làm-việc-github)
+10. [Tiêu chí hoàn thành](#tiêu-chí-hoàn-thành)
+11. [Tài liệu trong docs](#tài-liệu-trong-docs)
 
 ---
 
@@ -119,36 +118,6 @@ Luồng xử lý cơ bản:
 | Tài liệu | Markdown |
 | Sơ đồ | SVG / Mermaid / ảnh tạo bằng Gemini |
 
-## Cấu trúc thư mục
-
-```text
-Collision-Warning-System/
-├── README.md
-├── requirements.txt
-├── app/
-│   └── main.py
-├── src/
-│   ├── warning_engine.py
-│   └── simulator.py
-├── tests/
-│   ├── test_warning.py
-│   └── test_simulator.py
-├── data/
-│   └── scenarios.csv
-├── images/
-│   ├── banner.svg
-│   ├── architecture.svg
-│   ├── flow.svg
-│   └── roles.svg
-└── docs/
-    ├── gemini_image_prompts.md
-    └── member-guides/
-        ├── TV1.md
-        ├── TV2.md
-        ├── TV3.md
-        ├── TV4.md
-        └── TV5.md
-```
 
 ## Phân công 5 thành viên
 
