@@ -28,9 +28,13 @@ THIẾT KẾ DỮ LIỆU VÀ KỊCH BẢN MÔ PHỎNG (SIMULATION_SCENARIOS)
 3.Bảng tốc độ và khoảng cách (kịch bản cụ thể)
 
 Scenario_id	Tốc độ (km/h)	Khoảng cách (m)	Kết quả kì vọng
+
 SC_01_SAFE	40.0	50.0	SAFE
+
 SC_02_WARN	60.0	25.0	WARNING
+
 SC_03_DANG	80.0	15.0	DANGER
+
 SC_04_TEST_DIST	80.0	80.0	SAFE
 
 4.Giải thích mục đích từng kịch bản
