@@ -1,8 +1,11 @@
 THIẾT KẾ DỮ LIỆU VÀ KỊCH BẢN MÔ PHỎNG (SIMULATION_SCENARIOS)
 
 • Đề tài: Mô phỏng hệ thống cảnh báo va chạm (Forward Collision Warning System)
+
 • Issue: W1-03 – Thiết kế dữ liệu và kịch bản mô phỏng
+
 • Vai trò: simulation_scenarios
+
 • Tài liệu bàn giao: docs/week1/simulation_scenarios.md
 
 1.Mô tả dữ liệu và Giả định môi trường
