@@ -27,6 +27,7 @@ SC_03_DANG	80.0	15.0	DANGER
 SC_04_TEST_DIST	80.0	80.0	SAFE
 
 4.Giải thích mục đích từng kịch bản
+
 • SC_01_SAFE: Kiểm tra khả năng giữ im lặng của hệ thống khi ở điều kiện an toàn, tránh tình trạng báo động giả.
 • SC_02_WARN: kiểm tra độ nhạy tại ngưỡng biên cảnh báo. Xe đi nhanh và khoảng cách thu hẹp, cần phát tín hiệu chú ý.
 • SC_03_DANG: kiểm tra phản xạ khẩn cấp. Vận tốc kèm bán đuôi sát, quỹ thời gian rất ngắn nên hệ thống phải báo động đỏ.
