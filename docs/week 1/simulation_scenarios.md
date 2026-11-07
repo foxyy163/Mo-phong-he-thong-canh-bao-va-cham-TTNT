@@ -12,6 +12,7 @@ THIẾT KẾ DỮ LIỆU VÀ KỊCH BẢN MÔ PHỎNG (SIMULATION_SCENARIOS)
    • Hệ thống áp dụng “bước thời gian đơn” để đánh giá mức độ nguy hiểm tức thời đị một khoảng khắc.
 
 2. Cấu trúc dữ liệu dự kiến
+   
 • Dữ liệu mô phỏng được định dang CSV nhắm tối ưu hóa quá trình đọc và nạp tài liệu tự động vào mã nguồn Python.
 • Cấu trúc file gồm 4 cột dữ liệu cốt lõi:
 1.	Scenario_id (string): Mã kịch bản mô phỏng
@@ -34,6 +35,7 @@ SC_04_TEST_DIST	80.0	80.0	SAFE
 • SC_04_TEST_DIST: phân tích biến thiên, chứng minh khoảng cách xa giúp an toàn dù tốc độ cao.
 
 5.Phương án sử dụng dữ liệu và So Sánh kết quả
+
 • Cách sử dụng dữ liệu (tuần 2): Module Python sẽ đọc file Scenarios.csv, tiến hành kiểm tra tính hợp lệ, ép kiểu dữ liệu sang Float và truyền tham số trực tiếp vào hàm đánh giá suy diễn của module AI.
 • Phương án so sánh: 
      • Xây dựng bảng Console Log đối chiếu 1:1 giữa cột Expected_action (kết quả mong đợi đã được thiết kế sẵn trong file CSV) và actual_action (kết quả thực tế do thuật toán AI tính toán).
