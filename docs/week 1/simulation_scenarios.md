@@ -1,10 +1,15 @@
 THIẾT KẾ DỮ LIỆU VÀ KỊCH BẢN MÔ PHỎNG (SIMULATION_SCENARIOS)
+
 • Đề tài: Mô phỏng hệ thống cảnh báo va chạm (Forward Collision Warning System)
+
 • Issue: W1-03 – Thiết kế dữ liệu và kịch bản mô phỏng
+
 • Vai trò: simulation_scenarios
+
 • Tài liệu bàn giao: docs/week1/simulation_scenarios.md
 
 1.Mô tả dữ liệu và Giả định môi trường
+
 • Mô tả dữ liệu: Việc sử dụng dữ liệu mô phỏng nhằm trừu tượng hóa bài toán, cung cấp một môi trường lý tưởng (đã biết, tất định, không nhiễu) để kiểm tra độ chính xác của logic AI mà không đòi hỏi thiết bị phần cứng đắt tiền hay nguy hiểm.
 • Giả định môi trường:
     • Xe di chuyển trên đường thẳng, bề mặt phẳng. Vận tốc tại thời diểm mô phỏng được xem là hằng số.
@@ -21,6 +26,7 @@ THIẾT KẾ DỮ LIỆU VÀ KỊCH BẢN MÔ PHỎNG (SIMULATION_SCENARIOS)
 4.	Expected_action (String): trạng thái cảnh báo kì vọng (SAFE, WARNING, DANGER)
 
 3.Bảng tốc độ và khoảng cách (kịch bản cụ thể)
+
 Scenario_id	Tốc độ (km/h)	Khoảng cách (m)	Kết quả kì vọng
 SC_01_SAFE	40.0	50.0	SAFE
 SC_02_WARN	60.0	25.0	WARNING
