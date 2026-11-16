@@ -8,7 +8,7 @@
 2. Viết hàm `load_scenarios()` trong `src/simulator.py` dùng `csv.DictReader`; kết quả `list[dict]` với `speed_kmh` và `distance_m` là `float`.
 3. Không giữ danh sách `SCENARIOS` hard-code khác với CSV.
 4. Chạy thử đọc đủ ít nhất ba tình huống, rồi bàn giao dict cho TV5; không tự viết so sánh PASS/FAIL (TV5 phụ trách).
-5. Tạo `docs/code/TV3.md` giải thích cấu trúc CSV, cách nạp và ví dụ đọc dữ liệu.
+5. Tạo `docs/code/hathihongdao/README.md` giải thích cấu trúc CSV, cách nạp và ví dụ đọc dữ liệu.
 
 ## CSV chung để tránh lệch kết quả
 
