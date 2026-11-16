@@ -34,7 +34,7 @@ Quy trình: **TV1 chốt contract → TV2 & TV3 → TV5 → TV4 → TV1 nghiệm
 
 ## Bàn giao và vấn đáp
 
-- `README.md` rõ cách chạy; `docs/code/TV1.md` giải thích luồng tích hợp và một kết quả chạy thật; phần kiến trúc và phân công trong Word.
+- `README.md` rõ cách chạy; `docs/code/captainduycan-hub/README.md` giải thích luồng tích hợp và một kết quả chạy thật; phần kiến trúc và phân công trong Word.
 - Có thể trả lời: tại sao không cần backend, dữ liệu đi qua các file thế nào, nguyên nhân thường gặp khi ghép code, cách tránh ghi đè khi cùng push `main`.
 
 ---
