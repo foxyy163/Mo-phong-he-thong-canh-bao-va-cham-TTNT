@@ -1,3 +1,45 @@
+# W1-02 — Bộ luật cảnh báo AI (MVP hiện hành)
+
+> **Cập nhật 17/11/2026 — dùng cho giai đoạn code trước hạn 24/11.** [README chính](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/README.md) và [kế hoạch MVP](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/docs/KE_HOACH_MVP_24-11.md) là chuẩn triển khai hiện hành. Phần thiết kế Week 1 gốc nằm ở cuối file, chỉ để tham khảo quá trình làm bài. Nếu có khác biệt, **ưu tiên quy ước MVP phía trên**. Không cần REST API, Docker, SQL, mô phỏng 3D, branch/PR hay unit test tự động.
+
+## Thành viên TV2 thực hiện
+
+- Chỉnh đúng file `src/warning_engine.py` (đã có sẵn) và **giữ tên hàm** `assess_risk(speed_kmh, distance_m)`.
+- Input là số hữu hạn không âm, sai → `ValueError`; `distance_m=0` hợp lệ và trả `DANGER`.
+- Output có 5 key: `level`, `reason`, `rule_id`, `stopping_distance_m`, `warning_distance_m`. `level` dùng mã tiếng Anh.
+- Viết `docs/code/TV2.md` giải thích công thức, IF–THEN, cách chạy và ví dụ tính tay.
+
+## Công thức và luật cuối cùng
+
+```python
+v = speed_kmh / 3.6
+D_stop = v * 1.0 + v**2 / (2 * 5.0)
+D_warning = 1.5 * D_stop
+
+if distance_m == 0 or distance_m <= D_stop:
+    level, rule_id = "DANGER", "R01"
+elif distance_m <= D_warning:
+    level, rule_id = "WARNING", "R02"
+else:
+    level, rule_id = "SAFE", "R03"
+```
+
+| Tốc độ km/h | Khoảng cách m | Kết quả |
+|---:|---:|---|
+| 30 | 30 | SAFE |
+| 30 | 20 | WARNING |
+| 30 | 10 | DANGER |
+| 60 | 50 | WARNING |
+| 60 | 20 | DANGER |
+| 0 | 0 | DANGER |
+
+**Ghi chú:** số `t=1s`, `a=5m/s²`, `k=1.5` là giả định học tập. Phần thiết kế gốc phía dưới có nhắc tên hàm `evaluate_warning()`; **không dùng tên đó khi code**, sử dụng `assess_risk()` theo README.
+
+---
+
+<details>
+<summary>📚 Xem bản thiết kế Week 1 gốc (lưu để đối chiếu quá trình làm)</summary>
+
 # W1-02 – THIẾT KẾ BỘ LUẬT AI CẢNH BÁO VA CHẠM
 
 ## 1. Mục tiêu
@@ -293,3 +335,6 @@ Tài liệu này là **bản thiết kế W1-02**. Trước khi triển khai cod
 3. **TTNT_Chuong1_Slide_Bai_Giang** – Kiến thức nền về tác tử thông minh.
 
 **Phân biệt nguồn:** Yêu cầu bài toán và kỹ thuật trọng tâm được xác định theo đề tài số 36. Công thức khoảng cách dừng, giá trị `t = 1 s`, `a = 5 m/s²`, hệ số `k = 1,5` và các luật R01–R03 là **thiết kế đề xuất của nhóm**, không phải thông số do giảng viên quy định.
+
+
+</details>
