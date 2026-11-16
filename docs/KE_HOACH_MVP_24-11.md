@@ -69,7 +69,7 @@ Mỗi thành viên phải tự viết phần **đóng góp trong báo cáo Word*
 ## Timeline
 
 - **17/11:** 5 người xác nhận công thức, contract, dữ liệu mẫu; nhận issue.
-- **18–20/11:** Code trên branch riêng, tự chạy thử, bổ sung Markdown giải thích, push, tạo PR.
+- **18–20/11:** Mỗi người sửa đúng file được giao trên `main`, tự chạy thử, thêm Markdown giải thích, đồng bộ Git rồi commit/push; bình luận link commit vào issue.
 - **21/11:** TV1 review tích hợp; cả nhóm hỗ trợ fix.
 - **22/11:** Chạy thủ công các tình huống, chụp ảnh demo thực, mỗi người nộp nội dung báo cáo.
 - **23/11:** Chốt Word theo mẫu, tập vấn đáp và đóng gói mã nguồn.
@@ -101,4 +101,4 @@ Mỗi người tạo `docs/code/TV1.md` … `docs/code/TV5.md` trong PR riêng, 
 
 ## Git Workflow
 
-Week 1 Markdown giữ trên `main`. Code từ Week 2 trở đi: mỗi thành viên tự làm branch, commit/push, tự chạy thử và tạo PR; người review mới merge. Không xóa tài liệu cũ hoặc branch của thành viên.
+Week 1 Markdown giữ nguyên trên `main`. Từ giai đoạn code, mỗi người chỉ sửa file được giao và `docs/code/TVx.md`, tự chạy thử, `git pull --ff-only origin main` trước khi sửa/và trước khi push; commit đúng file, push trực tiếp `main`, bình luận link commit vào issue. TV1 kiểm tra kết quả trước khi đóng issue. Nếu lỗi non-fast-forward hoặc conflict thì dừng và báo nhóm trưởng, **không force push/ghi đè file người khác**.
