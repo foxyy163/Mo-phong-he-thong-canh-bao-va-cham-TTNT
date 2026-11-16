@@ -12,7 +12,7 @@ Bài tập lớn **Trí tuệ nhân tạo** — hệ chuyên gia **IF–THEN (Ru
 2. Đổi tốc độ sang m/s, tính khoảng cách dừng và ngưỡng cảnh báo giả định.
 3. Áp dụng 3 luật IF–THEN, trả mức cảnh báo, lý do và mã luật.
 4. Chạy ít nhất 3 tình huống từ CSV, đối chiếu kết quả.
-5. Kiểm thử bằng `unittest`.
+5. Xem bảng đối chiếu kết quả kịch bản và kiểm tra thủ công bằng dữ liệu mẫu.
 
 **Công nghệ:** Python, Streamlit, CSV, thư viện chuẩn. **Không sử dụng:** REST API, SQL, Docker, 3D, camera hay huấn luyện Machine Learning/Deep Learning.
 
@@ -48,8 +48,7 @@ app/main.py                 # Giao diện (TV4)
 src/warning_engine.py       # Luật cảnh báo (TV2)
 src/simulator.py            # Kịch bản mô phỏng (TV3)
 data/scenarios.csv          # Dữ liệu kịch bản (TV3)
-tests/test_warning.py       # Kiểm thử (TV5)
-tests/test_simulator.py     # Kiểm thử (TV5)
+src/comparison.py           # So sánh expected/actual (TV5, sẽ tạo khi code)
 docs/week 1/                # Giữ 5 tài liệu Week 1 gốc
 docs/KE_HOACH_MVP_24-11.md  # Kế hoạch rút gọn
 images/                     # Ảnh minh họa
@@ -66,11 +65,7 @@ pip install -r requirements.txt
 streamlit run app/main.py
 ```
 
-Kiểm thử:
-
-```bash
-python -m unittest discover -s tests -v
-```
+Kiểm tra thủ công: chạy 3 kịch bản SAFE, WARNING, DANGER trên giao diện và đối chiếu cột kết quả dự kiến/thực tế. Mỗi thành viên bổ sung `docs/code/TVx.md` giải thích file mình viết, cách chạy và một ví dụ đầu vào/đầu ra.
 
 ## Tài liệu Week 1
 
@@ -92,15 +87,17 @@ Tài liệu gốc của cả 5 thành viên được giữ nguyên:
 | TV2 — Luật cảnh báo | [MVP-02](../../issues/9) | `src/warning_engine.py` |
 | TV3 — Kịch bản mô phỏng | [MVP-03](../../issues/12) | `src/simulator.py`, CSV |
 | TV4 — Giao diện | [MVP-04](../../issues/11) | `app/main.py` |
-| TV5 — Kiểm thử | [MVP-05](../../issues/10) | `tests/`, kết quả test |
+| TV5 — Đối chiếu kết quả | [MVP-05](../../issues/10) | `src/comparison.py`, bảng kết quả thử thủ công |
 
 - **17/11:** thống nhất tên hàm và công thức.
-- **18–20/11:** code, test, push branch riêng, mở PR.
-- **21–22/11:** review, tích hợp, demo, viết báo cáo Word.
+- **18–20/11:** code, tự chạy thử, push branch riêng, mở PR.
+- **21–22/11:** review, tích hợp, thử 3 kịch bản, viết báo cáo Word.
 - **23/11:** chốt mã nguồn, báo cáo và tập vấn đáp.
 - **24/11:** nộp bài theo giờ đóng hệ thống.
 
 Chi tiết: [Kế hoạch MVP và những khác biệt cần thống nhất](docs/KE_HOACH_MVP_24-11.md).
+
+**Bàn giao của mỗi thành viên:** code thuộc module phụ trách + một file Markdown `docs/code/TVx.md` gồm mục đích, hàm chính, cách chạy, ví dụ input/output và phần tự giải thích (ngắn gọn). TV1 làm tài liệu tích hợp; không cần test tự động.
 
 **Git workflow:** thành viên tự nhận issue → tạo branch riêng → commit → tự test → push → Pull Request → review → merge vào `main`.
 
