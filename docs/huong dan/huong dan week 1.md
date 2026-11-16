@@ -1,3 +1,7 @@
+> **Lưu ý 17/11/2026:** Đây là **hướng dẫn lịch sử của Week 1**, vẫn giữ để đối chiếu công việc đã hoàn thành. Từ giai đoạn code đến hạn 24/11, các thành viên làm theo [README hiện hành](../../README.md), [kế hoạch MVP](../KE_HOACH_MVP_24-11.md) và 5 issue MVP trên GitHub. Không áp dụng các phần hướng dẫn cũ về branch/PR, unit test tự động hoặc module phức tạp nếu mâu thuẫn với flow mới.
+
+---
+
 
 # HƯỚNG DẪN THỰC HIỆN ISSUES – WEEK 1
 
