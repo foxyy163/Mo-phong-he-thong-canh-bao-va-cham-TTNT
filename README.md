@@ -90,8 +90,8 @@ Tài liệu gốc của cả 5 thành viên được giữ nguyên:
 | TV5 — Đối chiếu kết quả | [MVP-05](../../issues/10) | `src/comparison.py`, bảng kết quả thử thủ công |
 
 - **17/11:** thống nhất tên hàm và công thức.
-- **18–20/11:** code, tự chạy thử, push branch riêng, mở PR.
-- **21–22/11:** review, tích hợp, thử 3 kịch bản, viết báo cáo Word.
+- **18–20/11:** code, tự chạy thử, commit và push đúng file lên `main`.
+- **21–22/11:** TV1 kiểm tra các commit, tích hợp, thử 3 kịch bản, viết báo cáo Word.
 - **23/11:** chốt mã nguồn, báo cáo và tập vấn đáp.
 - **24/11:** nộp bài theo giờ đóng hệ thống.
 
@@ -99,7 +99,7 @@ Chi tiết: [Kế hoạch MVP và những khác biệt cần thống nhất](doc
 
 **Bàn giao của mỗi thành viên:** code thuộc module phụ trách + một file Markdown `docs/code/TVx.md` gồm mục đích, hàm chính, cách chạy, ví dụ input/output và phần tự giải thích (ngắn gọn). TV1 làm tài liệu tích hợp; không cần test tự động.
 
-**Git workflow:** thành viên tự nhận issue → tạo branch riêng → commit → tự chạy thử → push → Pull Request → review → merge vào `main`.
+**Git workflow tối giản:** Mỗi người chỉ sửa file mình phụ trách trên `main`. Trước khi sửa và trước khi push, chạy `git pull --ff-only origin main` (nếu dùng Git CLI). Chạy thử → commit đúng file được giao → push `main` → bình luận link commit và file Markdown trong issue → chờ TV1 kiểm tra rồi mới đóng issue. **Không dùng `git push --force`, không tự ghi đè file người khác.** Nếu bị lỗi đồng bộ hoặc xung đột, dừng và hỏi nhóm trưởng.
 
 ## Hồ sơ nộp
 
