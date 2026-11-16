@@ -1,3 +1,38 @@
+# W1-05 — Đối chiếu kết quả và đánh giá thủ công (MVP hiện hành)
+
+> **Cập nhật 17/11/2026 — dùng cho giai đoạn code trước hạn 24/11.** [README chính](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/README.md) và [kế hoạch MVP](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/docs/KE_HOACH_MVP_24-11.md) là chuẩn triển khai hiện hành. Phần thiết kế Week 1 gốc nằm ở cuối file, chỉ để tham khảo quá trình làm bài. Nếu có khác biệt, **ưu tiên quy ước MVP phía trên**. Không cần REST API, Docker, SQL, mô phỏng 3D, branch/PR hay unit test tự động.
+
+## Phần việc TV5 đã rút gọn
+
+Không cần viết `unittest` hay tạo thư mục `tests/`. TV5 vẫn có **đóng góp code** bằng `src/comparison.py`, dùng kết quả của TV2 và TV3.
+
+```python
+compare_scenarios(scenarios: list[dict]) -> list[dict]
+```
+
+- Input là danh sách từ `load_scenarios()` của TV3 (CSV 5 cột).
+- Với mỗi kịch bản, gọi `assess_risk(speed_kmh, distance_m)` của TV2 (không tự chép luật).
+- So `expected_action` với `actual_level`: bằng nhau → `PASS`, khác nhau → `FAIL`, kịch bản lỗi → `ERROR`.
+- Trả danh sách dict giữ `scenario_id,name,speed_kmh,distance_m,expected_action` và thêm `actual_level,status`.
+- Tạo `docs/code/TV5.md` giải thích logic so sánh và cách chạy với bảng kết quả thực.
+
+## Bảng kiểm tra tay bắt buộc
+
+| Dữ liệu | Expected |
+|---|---|
+| 30 km/h, 30 m | SAFE |
+| 30 km/h, 20 m | WARNING |
+| 30 km/h, 10 m | DANGER |
+| 60 km/h, 50 m | WARNING |
+| Tốc độ âm | ValueError / thông báo lỗi giao diện |
+
+**Điều kiện tiếp nhận:** Chỉ bắt đầu tích hợp khi TV2 `assess_risk` và TV3 `load_scenarios` đã hoàn thiện và được push lên `main`. TV5 làm phần kết quả, hạn chế mô phỏng và ảnh chụp trong báo cáo Word. Không tự sửa module AI/Simulator thay người khác.
+
+---
+
+<details>
+<summary>📚 Xem bản thiết kế Week 1 gốc (lưu để đối chiếu quá trình làm)</summary>
+
 # ĐẶC TẢ YÊU CẦU, PHÂN TÍCH TÁC TỬ PEAS VÀ KẾ HOẠCH KIỂM THỬ
 
 **Issue:** `[W1-05]` Đặc tả yêu cầu và kế hoạch kiểm thử  
@@ -161,3 +196,6 @@ Bảng dưới đây bao gồm **12 Test Cases** bao phủ đầy đủ: các ca
 - [x] Đã xây dựng kế hoạch kiểm thử.
 - [x] Đã viết tối thiểu 8 test case (đã thiết kế 12 test case).
 - [x] Đã hoàn thiện `requirements_testplan.md`.
+
+
+</details>
