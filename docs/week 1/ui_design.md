@@ -1,3 +1,40 @@
+# W1-04 — Giao diện Streamlit (MVP hiện hành)
+
+> **Cập nhật 17/11/2026 — dùng cho giai đoạn code trước hạn 24/11.** [README chính](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/README.md) và [kế hoạch MVP](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/docs/KE_HOACH_MVP_24-11.md) là chuẩn triển khai hiện hành. Phần thiết kế Week 1 gốc nằm ở cuối file, chỉ để tham khảo quá trình làm bài. Nếu có khác biệt, **ưu tiên quy ước MVP phía trên**. Không cần REST API, Docker, SQL, mô phỏng 3D, branch/PR hay unit test tự động.
+
+## Chức năng bắt buộc TV4 cần code
+
+Chỉ sử dụng **một trang** `app/main.py`, không làm HTML/CSS riêng hoặc nhiều trang. Chạy từ thư mục gốc bằng `streamlit run app/main.py`.
+
+- [ ] Hai ô nhập `speed_kmh` (km/h) và `distance_m` (m) và nút **Đánh giá**.
+- [ ] Gọi `assess_risk(speed_kmh, distance_m)` để lấy `level,reason,rule_id,stopping_distance_m,warning_distance_m`.
+- [ ] Ánh xạ `SAFE→st.success()`, `WARNING→st.warning()`, `DANGER→st.error()`.
+- [ ] Gọi `load_scenarios()` và `compare_scenarios(scenarios)` để chọn kịch bản và hiển thị bảng đối chiếu.
+- [ ] Bắt `ValueError`/lỗi CSV và hiển thị thông báo dễ hiểu, không crash.
+- [ ] Đảm bảo import `src.*` không lỗi khi chạy bằng lệnh trên.
+- [ ] Chụp ảnh giao diện thật và tạo `docs/code/TV4.md` với cách chạy, ví dụ input/output, giải thích các widget.
+
+## Quy trình nối module
+
+```mermaid
+flowchart TD
+    UI["Streamlit UI — app/main.py"] --> AI["TV2: assess_risk"]
+    UI --> SIM["TV3: load_scenarios"]
+    SIM --> CMP["TV5: compare_scenarios"]
+    CMP --> UI
+```
+
+**Thời điểm nối code:** TV4 có thể làm khung giao diện sớm nhưng chỉ import/gọi các module khi TV2, TV3, TV5 đã báo commit code chạy được trên `main` (dự kiến trước 20/11).
+
+**Giữ lại bản wireframe Week 1:** ![Bản phác giao diện](assets/ui_wireframe.png)
+
+**Tối giản so với bản thiết kế trước:** slider song song number input, lịch sử phiên chạy dài, giao diện nhiều khối/biểu đồ, hoạt ảnh và đề xuất hành động đều là **tùy chọn**; không cần làm nếu thiếu thời gian. Dữ liệu `distance_m=0` không phải lỗi mặc định của AI; hệ thống trả DANGER theo quyết định MVP.
+
+---
+
+<details>
+<summary>📚 Xem bản thiết kế Week 1 gốc (lưu để đối chiếu quá trình làm)</summary>
+
 # THIẾT KẾ GIAO DIỆN HỆ THỐNG (UI DESIGN)
 
 - **Đề tài:** Mô phỏng hệ thống cảnh báo va chạm (Forward Collision Warning System)
@@ -219,3 +256,6 @@ Giao diện (W1-04) thống nhất cấu trúc dữ liệu đầu vào và đầ
 - `rule_condition (str)`: Nội dung điều kiện của luật được kích hoạt.
 
 - `explanation (str)`: Câu giải thích chi tiết lý do cảnh báo và khuyến nghị thao tác cho người lái.
+
+
+</details>
