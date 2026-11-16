@@ -58,7 +58,7 @@ Với `speed_kmh=0, distance_m=0` cũng trả `DANGER` theo quy ước mô phỏ
 
 | Workstream | Tiếp nối tài liệu | File/trách nhiệm | Điều kiện hoàn thành |
 |---|---|---|---|
-| TV1 — tích hợp & báo cáo | W1-01 / architecture.md | README, kiểm tra module và ghép báo cáo Word | Chạy cả app và test; báo cáo tổng hợp được |
+| TV1 — tích hợp & báo cáo | W1-01 / architecture.md | README, kiểm tra module và ghép báo cáo Word | Chạy app và 3 kịch bản mẫu; báo cáo tổng hợp được |
 | TV2 — luật cảnh báo | W1-02 / warning_rules.md | src/warning_engine.py | 3 mức đúng công thức và trường hợp biên |
 | TV3 — mô phỏng CSV | W1-03 / simulation_scenarios.md | src/simulator.py, data/scenarios.csv | ≥3 kịch bản, so sánh expected/actual |
 | TV4 — giao diện | W1-04 / ui_design.md | app/main.py | Nhập tay/chọn kịch bản, hiển thị nhãn-màu-lý do |
@@ -101,4 +101,4 @@ Mỗi người tạo `docs/code/TV1.md` … `docs/code/TV5.md` trong PR riêng, 
 
 ## Git Workflow
 
-Week 1 Markdown giữ trên `main`. Code từ Week 2 trở đi: mỗi thành viên tự làm branch, commit/push, chạy test và tạo PR; người review mới merge. Không xóa tài liệu cũ hoặc branch của thành viên.
+Week 1 Markdown giữ trên `main`. Code từ Week 2 trở đi: mỗi thành viên tự làm branch, commit/push, tự chạy thử và tạo PR; người review mới merge. Không xóa tài liệu cũ hoặc branch của thành viên.
