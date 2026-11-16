@@ -1,108 +1,207 @@
-<p align="center"><img src="images/banner.svg" width="100%" alt="Mô phỏng hệ thống cảnh báo va chạm"></p>
+<p align="center">
+  <img src="images/banner.svg" alt="Mô phỏng hệ thống cảnh báo va chạm" width="100%">
+</p>
 
 # Mô phỏng hệ thống cảnh báo va chạm
 
-Bài tập lớn **Trí tuệ nhân tạo** — hệ chuyên gia **IF–THEN (Rule-Based AI)** viết bằng Python. Chương trình mô phỏng đánh giá rủi ro từ **tốc độ xe (km/h)** và **khoảng cách đến vật cản (m)**, sau đó đưa ra **SAFE / WARNING / DANGER** kèm giải thích.
+> **Bài tập lớn môn Trí tuệ nhân tạo · 5 thành viên · Hạn nộp 24/11/2026**
 
-> **Hạn nộp: 24/11/2026.** Đây là mô phỏng phục vụ học tập, **không** phải thiết bị cảnh báo an toàn giao thông thực tế.
+Ứng dụng Python + Streamlit mô phỏng cách một **hệ chuyên gia dựa trên luật IF–THEN** đánh giá nguy cơ va chạm từ **tốc độ xe** và **khoảng cách tới vật cản**. Đầu ra có 3 mức **SAFE / WARNING / DANGER** kèm lời giải thích. Không dùng cảm biến thật; các thông số chỉ dành cho học tập, **không dùng để điều khiển xe**.
 
-## Tính năng MVP
+## 1. Chức năng cần hoàn thành
 
-1. Nhập tốc độ và khoảng cách trên giao diện Streamlit.
-2. Đổi tốc độ sang m/s, tính khoảng cách dừng và ngưỡng cảnh báo giả định.
-3. Áp dụng 3 luật IF–THEN, trả mức cảnh báo, lý do và mã luật.
-4. Chạy ít nhất 3 tình huống từ CSV, đối chiếu kết quả.
-5. Xem bảng đối chiếu kết quả kịch bản và kiểm tra thủ công bằng dữ liệu mẫu.
+- Nhập tốc độ xe (km/h) và khoảng cách vật cản (m).
+- Tính khoảng cách dừng và ngưỡng cảnh báo theo công thức giả định.
+- Áp dụng 3 luật AI IF–THEN để trả mức cảnh báo, mã luật và giải thích.
+- Nạp ít nhất 3 kịch bản từ CSV và đối chiếu kết quả dự kiến/thực tế.
+- Hiển thị một trang Streamlit với kết quả và bảng so sánh.
 
-**Công nghệ:** Python, Streamlit, CSV, thư viện chuẩn. **Không sử dụng:** REST API, SQL, Docker, 3D, camera hay huấn luyện Machine Learning/Deep Learning.
+**Không triển khai:** Docker, SQL, REST API, frontend/backend riêng, mô phỏng 3D, OpenCV, camera hay huấn luyện học máy. **Không bắt buộc viết unit test tự động**; nhóm chạy thử thủ công và lưu kết quả thật.
 
-## Cách suy luận
-
-Với `v = speed_kmh / 3.6`, giả định thời gian phản ứng `t=1s`, độ lớn gia tốc phanh `a=5m/s²` và hệ số mở rộng cảnh báo `k=1.5`:
-
-- `D_stop = v * t + v² / (2a)`
-- `D_warning = k * D_stop`
-- **DANGER (R01):** `distance_m == 0` hoặc `distance_m <= D_stop`
-- **WARNING (R02):** `D_stop < distance_m <= D_warning`
-- **SAFE (R03):** `distance_m > D_warning`
-
-Các tham số là giả định cho bài học, không phải tiêu chuẩn an toàn thực tế.
+## 2. Kiến trúc và flow làm việc
 
 ```mermaid
 flowchart TD
-    A["Nhập tốc độ, khoảng cách"] --> B["Kiểm tra dữ liệu"]
-    B --> C["Tính D_stop và D_warning"]
-    C --> D{"Khoảng cách <= D_stop?"}
-    D -->|Có| E["R01: DANGER"]
-    D -->|Không| F{"Khoảng cách <= D_warning?"}
-    F -->|Có| G["R02: WARNING"]
-    F -->|Không| H["R03: SAFE"]
+    A["TV1: Chốt tên hàm, input/output"] --> B["TV2: AI — warning_engine.py"]
+    A --> C["TV3: CSV — simulator.py"]
+    B --> D["TV5: So sánh — comparison.py"]
+    C --> D
+    B --> E["TV4: Giao diện — app/main.py"]
+    C --> E
+    D --> E
+    E --> F["TV1: Tích hợp và nghiệm thu"]
 ```
 
-## Cấu trúc repo đang sử dụng
+### Trình tự bắt buộc
+
+| Mốc | Người phụ trách | Hoàn thành khi | Người tiếp theo |
+|---|---|---|---|
+| **0 — Chốt giao diện hàm (17/11)** | **TV1 + cả nhóm** | Cả nhóm đồng ý tên hàm, key trong dict và header CSV ở mục 3 | TV2, TV3 |
+| **1 — Hai module độc lập (18/11)** | **TV2, TV3** | Code chạy độc lập, dữ liệu mẫu đúng; commit lên `main` | TV5 |
+| **2 — Đối chiếu (19/11)** | **TV5** | Gọi được AI + Simulator, có bảng PASS/FAIL/ERROR | TV4 |
+| **3 — Giao diện (20/11)** | **TV4** | Nhập tay/chọn kịch bản, ba mức màu và bảng kết quả chạy được | TV1 |
+| **4 — Tích hợp (21–22/11)** | **TV1 + cả nhóm** | Chạy demo thật, sửa lỗi theo đúng owner, chuẩn bị ảnh và Word | Cả nhóm |
+| **5 — Chốt và nộp (23–24/11)** | **Cả nhóm** | Báo cáo Word, code, Markdown giải thích, chuẩn bị vấn đáp | Nộp bài |
+
+**Có thể viết song song phần độc lập**, nhưng **không gọi module chưa hoàn thiện trên `main`**. TV4 có thể phác giao diện sớm, nhưng chỉ kết nối khi TV2/TV3/TV5 báo hàm đã chạy.
+
+## 3. Hợp đồng giao tiếp giữa các file — KHÔNG tự đổi
+
+Mọi thành viên **đọc mục này trước khi code**. Nếu buộc phải thay đổi, phải trao đổi với cả nhóm và sửa tài liệu + các file liên quan cùng lúc.
+
+### TV2 — `src/warning_engine.py`
+
+```python
+assess_risk(speed_kmh: float, distance_m: float) -> dict
+```
+
+Ví dụ kết quả:
+
+```python
+{"level": "WARNING", "reason": "Khoảng cách thuộc vùng cảnh báo.",
+ "rule_id": "R02", "stopping_distance_m": 44.44,
+ "warning_distance_m": 66.67}
+```
+
+- `level` luôn là mã `SAFE`, `WARNING` hoặc `DANGER` (**không trả nhãn tiếng Việt trong field này**).
+- `reason` và `rule_id` luôn có; 2 trường khoảng cách dùng để giải thích UI.
+- Dữ liệu không hợp lệ (âm, NaN, vô cực, sai kiểu) → `ValueError`.
+- Các ngưỡng chỉ phục vụ mô phỏng.
+
+### TV3 — `src/simulator.py` và `data/scenarios.csv`
+
+```python
+load_scenarios() -> list[dict]
+```
+
+CSV dùng đúng header:
+
+```csv
+scenario_id,name,speed_kmh,distance_m,expected_action
+SC01,An toàn,30,30,SAFE
+SC02,Cảnh báo,30,20,WARNING
+SC03,Nguy hiểm,30,10,DANGER
+```
+
+`load_scenarios()` trả các dict có 5 key trên; `speed_kmh` và `distance_m` là `float`. Không hard-code một danh sách thứ hai trong Python; CSV là nguồn duy nhất.
+
+### TV5 — `src/comparison.py`
+
+```python
+compare_scenarios(scenarios: list[dict]) -> list[dict]
+```
+
+Mỗi dòng trả tối thiểu: `scenario_id`, `name`, `speed_kmh`, `distance_m`, `expected_action`, `actual_level`, `status` (`PASS`/`FAIL`/`ERROR`). Hàm gọi `assess_risk` của TV2, không tự chép lại luật.
+
+### TV4 — `app/main.py`
+
+- Gọi `assess_risk` để đánh giá dữ liệu nhập tay.
+- Gọi `load_scenarios` và `compare_scenarios` để hiện bảng tình huống.
+- Chuyển `level` thành `st.success()`, `st.warning()` hoặc `st.error()`; bắt `ValueError` và hiển thị lỗi rõ ràng.
+- Không tự viết thêm luật IF–THEN vào file giao diện.
+- Chạy từ thư mục gốc repo bằng `streamlit run app/main.py`; đảm bảo import `src.*` hoạt động.
+
+### Thuật toán thống nhất từ W1-02
+
+Với `v = speed_kmh / 3.6`, giả định `t = 1s`, `a = 5 m/s²`, `k = 1.5`:
+
+```python
+D_stop = v * t + v**2 / (2 * a)
+D_warning = k * D_stop
+
+if distance_m == 0 or distance_m <= D_stop:
+    level = "DANGER"      # R01
+elif distance_m <= D_warning:
+    level = "WARNING"     # R02
+else:
+    level = "SAFE"        # R03
+```
+
+**Giá trị mẫu để cả nhóm kiểm tra:** `(30,30) → SAFE`, `(30,20) → WARNING`, `(30,10) → DANGER`, `(60,50) → WARNING`, `(60,20) → DANGER`. Trường hợp `distance_m=0` thuộc `DANGER` theo quyết định MVP, dù một tài liệu W1 cũ từng coi đây là dữ liệu lỗi.
+
+## 4. Cấu trúc repository tối giản
 
 ```text
-README.md                   # Tổng quan, hướng dẫn
-requirements.txt            # Streamlit
-app/main.py                 # Giao diện (TV4)
-src/warning_engine.py       # Luật cảnh báo (TV2)
-src/simulator.py            # Kịch bản mô phỏng (TV3)
-data/scenarios.csv          # Dữ liệu kịch bản (TV3)
-src/comparison.py           # So sánh expected/actual (TV5, sẽ tạo khi code)
-docs/week 1/                # Giữ 5 tài liệu Week 1 gốc
-docs/KE_HOACH_MVP_24-11.md  # Kế hoạch rút gọn
-images/                     # Ảnh minh họa
+README.md
+requirements.txt
+app/
+  main.py                 # TV4 — Streamlit
+src/
+  warning_engine.py       # TV2 — AI
+  simulator.py            # TV3 — CSV
+  comparison.py           # TV5 — sẽ tạo khi làm issue
+data/
+  scenarios.csv           # TV3 — các kịch bản
+docs/
+  KE_HOACH_MVP_24-11.md   # Kế hoạch chung
+  week 1/                 # Bản gốc 5 tài liệu, không xóa
+  code/                   # TV1.md…TV5.md, thành viên sẽ tạo
+images/
+  banner.svg
+  architecture.svg
 ```
 
-Đây là cấu trúc đang được hoàn thiện qua các Pull Request, không phải tuyên bố các tính năng đã làm xong.
+**Chú ý:** `src/comparison.py` và `docs/code/` là **file/thư mục dự kiến**, chưa có trước khi thành viên đưa bài lên. Không tạo file trống cho đủ cây.
 
-## Chạy chương trình
+## 5. Các issue đã gán
 
-Yêu cầu Python 3.10+:
+| Thành viên | GitHub | Issue | File chính |
+|---|---|---|---|
+| TV1 — Kiến trúc, tích hợp | `captainduycan-hub` | [#8](../../issues/8) | README, tổng hợp báo cáo |
+| TV2 — Bộ luật AI | `foxyy163` | [#9](../../issues/9) | `src/warning_engine.py` |
+| TV3 — Mô phỏng | `hathihongdao` | [#12](../../issues/12) | `src/simulator.py`, CSV |
+| TV4 — Giao diện | `ledan823-spec` | [#11](../../issues/11) | `app/main.py` |
+| TV5 — Đối chiếu | `nguyenvc2772-sys` | [#10](../../issues/10) | `src/comparison.py` |
+
+## 6. Quy trình làm việc trên `main` để tránh lỗi
+
+Vì nhóm chủ động **không dùng branch hoặc Pull Request**, mọi người phải tuân thủ:
+
+1. **Nhận issue và thông báo nhóm** file định sửa. Mỗi người chỉ sửa file thuộc mình.
+2. **Đồng bộ trước khi sửa**: `git pull --ff-only origin main`.
+3. Code và **chạy thử chức năng độc lập**; tuyệt đối không push code lỗi cú pháp.
+4. Thêm **file Markdown riêng** `docs/code/TV1.md` … `docs/code/TV5.md`, giải thích ngắn gọn hàm, input/output, cách chạy, 1 ví dụ thực tế.
+5. **Ngay trước khi push**, đồng bộ lại `main` bằng `git pull --ff-only origin main`, kiểm tra `git status`; commit **chỉ những file được giao** (không dùng `git add .` khi có file của người khác).
+6. Push `main`, bình luận link commit vào issue. **Chỉ đóng issue khi người tiếp theo hoặc TV1 kiểm tra đã dùng được**.
+7. Khi lỗi non-fast-forward, xung đột hoặc không thể pull: **dừng và hỏi nhóm trưởng**, không dùng `git push --force`, không ghi đè file người khác.
+
+**Lưu ý:** Nếu có thay đổi chưa commit, `git pull --ff-only` có thể bị từ chối. Khi đó hãy lưu/commit phần của mình trước rồi đồng bộ an toàn, hoặc hỏi TV1; không tự xóa thay đổi.
+
+**Đối với người dùng GitHub Web:** chỉ mở file mình phụ trách → Edit → Commit directly to `main`; trước khi lưu hãy kiểm tra file vẫn là bản mới nhất. Nếu GitHub báo conflict, dừng và báo nhóm.
+
+## 7. Cách chạy và kiểm tra trước khi nộp
+
+Python 3.10+:
 
 ```bash
 pip install -r requirements.txt
 streamlit run app/main.py
 ```
 
-Kiểm tra thủ công: chạy 3 kịch bản SAFE, WARNING, DANGER trên giao diện và đối chiếu cột kết quả dự kiến/thực tế. Mỗi thành viên bổ sung `docs/code/TVx.md` giải thích file mình viết, cách chạy và một ví dụ đầu vào/đầu ra.
+Kiểm tra thực tế:
 
-## Tài liệu Week 1
+- Nhập `30 km/h, 30 m` → SAFE.
+- Nhập `30 km/h, 20 m` → WARNING.
+- Nhập `30 km/h, 10 m` → DANGER.
+- Chọn 3 kịch bản CSV và xem expected/actual.
+- Nhập dữ liệu sai (nếu UI hỗ trợ) và xác nhận có thông báo lỗi.
+- Chụp kết quả chạy thật để đưa vào báo cáo.
 
-Tài liệu gốc của cả 5 thành viên được giữ nguyên:
+## 8. Tài liệu và báo cáo Word
 
-| Nhóm việc | Tài liệu |
-|---|---|
-| W1-01 — Kiến trúc & tích hợp | [architecture.md](docs/week%201/architecture.md), [System Design.md](docs/week%201/System%20Design.md) |
-| W1-02 — Bộ luật AI | [warning_rules.md](docs/week%201/warning_rules.md) |
-| W1-03 — Dữ liệu mô phỏng | [simulation_scenarios.md](docs/week%201/simulation_scenarios.md) |
-| W1-04 — Giao diện | [ui_design.md](docs/week%201/ui_design.md) |
-| W1-05 — Yêu cầu & kiểm thử | [requirements_testplan.md](docs/week%201/requirements_testplan.md) |
+**Giữ nguyên tài liệu Week 1:**
 
-## Công việc đến 24/11
+- [W1-01 — Kiến trúc](docs/week%201/architecture.md) và [System Design](docs/week%201/System%20Design.md).
+- [W1-02 — Luật AI](docs/week%201/warning_rules.md).
+- [W1-03 — Kịch bản](docs/week%201/simulation_scenarios.md).
+- [W1-04 — Giao diện](docs/week%201/ui_design.md).
+- [W1-05 — Yêu cầu và kế hoạch kiểm thử](docs/week%201/requirements_testplan.md).
+- [Kế hoạch MVP mới](docs/KE_HOACH_MVP_24-11.md) là chuẩn thực hiện từ 17/11.
 
-| Workstream | Issue | Bàn giao |
-|---|---|---|
-| TV1 — Tích hợp & báo cáo | [MVP-01](../../issues/8) | Kiểm tra chạy đồng bộ, README, ghép Word |
-| TV2 — Luật cảnh báo | [MVP-02](../../issues/9) | `src/warning_engine.py` |
-| TV3 — Kịch bản mô phỏng | [MVP-03](../../issues/12) | `src/simulator.py`, CSV |
-| TV4 — Giao diện | [MVP-04](../../issues/11) | `app/main.py` |
-| TV5 — Đối chiếu kết quả | [MVP-05](../../issues/10) | `src/comparison.py`, bảng kết quả thử thủ công |
+**Bàn giao cá nhân:** code + `docs/code/TVx.md` + đoạn báo cáo Word về phần mình làm. Giải thích được code quan trọng hơn tài liệu dài.
 
-- **17/11:** thống nhất tên hàm và công thức.
-- **18–20/11:** code, tự chạy thử, commit và push đúng file lên `main`.
-- **21–22/11:** TV1 kiểm tra các commit, tích hợp, thử 3 kịch bản, viết báo cáo Word.
-- **23/11:** chốt mã nguồn, báo cáo và tập vấn đáp.
-- **24/11:** nộp bài theo giờ đóng hệ thống.
+**Báo cáo chung theo mẫu giảng viên:** 1. Tên đề tài; 2. Mục lục; 3. Phân công & đóng góp 5 người; 4. Phân tích bài toán; 5. Thuật toán/pseudocode; 6. Giao diện & kết quả demo thật; 7. Phụ lục (nếu có); 8. Tài liệu tham khảo.
 
-Chi tiết: [Kế hoạch MVP và những khác biệt cần thống nhất](docs/KE_HOACH_MVP_24-11.md).
+**Ngày 23/11:** cả nhóm tập vấn đáp; **24/11:** nộp Word + mã nguồn/link GitHub trước giờ đóng hệ thống.
 
-**Bàn giao của mỗi thành viên:** code thuộc module phụ trách + một file Markdown `docs/code/TVx.md` gồm mục đích, hàm chính, cách chạy, ví dụ input/output và phần tự giải thích (ngắn gọn). TV1 làm tài liệu tích hợp; không cần test tự động.
-
-**Git workflow tối giản:** Mỗi người chỉ sửa file mình phụ trách trên `main`. Trước khi sửa và trước khi push, chạy `git pull --ff-only origin main` (nếu dùng Git CLI). Chạy thử → commit đúng file được giao → push `main` → bình luận link commit và file Markdown trong issue → chờ TV1 kiểm tra rồi mới đóng issue. **Không dùng `git push --force`, không tự ghi đè file người khác.** Nếu bị lỗi đồng bộ hoặc xung đột, dừng và hỏi nhóm trưởng.
-
-## Hồ sơ nộp
-
-**Báo cáo Word** theo mẫu của giảng viên: tên đề tài, mục lục, phân công có đóng góp của từng người, phân tích bài toán, thuật toán/pseudocode, ảnh giao diện và kết quả chạy thật, phụ lục (nếu cần), tài liệu tham khảo. Nộp kèm **mã nguồn hoặc liên kết GitHub**.
-
-<img src="images/architecture.svg" width="100%" alt="Sơ đồ kiến trúc minh họa ban đầu">
+<p align="center"><img src="images/architecture.svg" alt="Hình kiến trúc tham khảo Week 1" width="90%"></p>
