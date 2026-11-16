@@ -46,7 +46,7 @@ Ngưỡng theo W1-02: `D_stop = v*1 + v**2/(2*5)`; `D_warning=1.5*D_stop`, với
 ## 4. Những phần thiết kế Week 1 không còn bắt buộc
 
 - Không xây dựng `contracts.py`, `orchestrator.py`, `test_contract.py`, `test_orchestrator.py` hay cấu trúc tầng phức tạp.
-- Không yêu cầu Pull Request hoặc unit test: mỗi người code đúng file, chạy thử thủ công, commit `main`, kèm `docs/code/TVx.md`.
+- Không yêu cầu Pull Request hoặc unit test: mỗi người code đúng file, chạy thử thủ công, commit `main`, kèm `docs/code/<github-username>/README.md`.
 - Kết quả `distance_m=0` thống nhất là `DANGER`, thay thế ý tưởng cũ cho là input lỗi.
 
 ---
