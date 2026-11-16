@@ -7,7 +7,7 @@
 - Chỉnh đúng file `src/warning_engine.py` (đã có sẵn) và **giữ tên hàm** `assess_risk(speed_kmh, distance_m)`.
 - Input là số hữu hạn không âm, sai → `ValueError`; `distance_m=0` hợp lệ và trả `DANGER`.
 - Output có 5 key: `level`, `reason`, `rule_id`, `stopping_distance_m`, `warning_distance_m`. `level` dùng mã tiếng Anh.
-- Viết `docs/code/TV2.md` giải thích công thức, IF–THEN, cách chạy và ví dụ tính tay.
+- Viết `docs/code/foxyy163/README.md` giải thích công thức, IF–THEN, cách chạy và ví dụ tính tay.
 
 ## Công thức và luật cuối cùng
 
