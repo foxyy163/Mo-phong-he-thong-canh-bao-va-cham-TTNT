@@ -1,5 +1,8 @@
 # Kế hoạch MVP — Hạn nộp 24/11/2026
 
+> **Cập nhật flow 17/11:** [README mục 2–3](../README.md) là chuẩn mới nhất về thứ tự tích hợp và chữ ký hàm. TV1 chốt contract → TV2/TV3 bàn giao độc lập → TV5 so sánh → TV4 giao diện → TV1 nghiệm thu. Nếu tài liệu Week 1 hoặc phần khác trong tài liệu này ghi khác, **ưu tiên README và code đã chốt**. Nhóm làm trực tiếp trên main, mỗi người chỉ sửa file được giao; không dùng branch/PR hoặc unit test bắt buộc.
+
+
 > Bản cập nhật nhằm rút gọn phạm vi sau khi hoàn thành Week 1. **Giữ nguyên** các tài liệu tác giả tại `docs/week 1/`; không xóa hoặc đổi tên tài liệu của thành viên.
 
 ## Mục tiêu
