@@ -15,8 +15,7 @@ app/main.py                   # Giao diện Streamlit — TV4
 src/warning_engine.py         # Bộ luật AI — TV2
 src/simulator.py              # Dữ liệu và các tình huống — TV3
 data/scenarios.csv            # Kịch bản CSV — TV3
-tests/test_warning.py         # Unit test — TV5
-tests/test_simulator.py       # Unit test — TV5
+src/comparison.py            # So sánh kết quả — TV5 (sẽ bổ sung)
 docs/week 1/                 # 5 tài liệu và bản tổng hợp đã làm
 docs/KE_HOACH_MVP_24-11.md    # Tài liệu kế hoạch hiện tại
 images/                       # Giữ các ảnh README đang sử dụng
@@ -63,16 +62,16 @@ Với `speed_kmh=0, distance_m=0` cũng trả `DANGER` theo quy ước mô phỏ
 | TV2 — luật cảnh báo | W1-02 / warning_rules.md | src/warning_engine.py | 3 mức đúng công thức và trường hợp biên |
 | TV3 — mô phỏng CSV | W1-03 / simulation_scenarios.md | src/simulator.py, data/scenarios.csv | ≥3 kịch bản, so sánh expected/actual |
 | TV4 — giao diện | W1-04 / ui_design.md | app/main.py | Nhập tay/chọn kịch bản, hiển thị nhãn-màu-lý do |
-| TV5 — test & kết quả | W1-05 / requirements_testplan.md | tests/ | Test SAFE/WARNING/DANGER, dữ liệu sai và CSV |
+| TV5 — đối chiếu & kết quả | W1-05 / requirements_testplan.md | src/comparison.py (tạo mới), docs/code/TV5.md | So sánh expected/actual, chạy thử 3 mức và báo cáo kết quả |
 
 Mỗi thành viên phải tự viết phần **đóng góp trong báo cáo Word** và hiểu code của mình để vấn đáp.
 
 ## Timeline
 
 - **17/11:** 5 người xác nhận công thức, contract, dữ liệu mẫu; nhận issue.
-- **18–20/11:** Code trên branch riêng, tự chạy thử, push, tạo PR.
+- **18–20/11:** Code trên branch riêng, tự chạy thử, bổ sung Markdown giải thích, push, tạo PR.
 - **21/11:** TV1 review tích hợp; cả nhóm hỗ trợ fix.
-- **22/11:** Test, chụp ảnh demo thực, mỗi người nộp nội dung báo cáo.
+- **22/11:** Chạy thủ công các tình huống, chụp ảnh demo thực, mỗi người nộp nội dung báo cáo.
 - **23/11:** Chốt Word theo mẫu, tập vấn đáp và đóng gói mã nguồn.
 - **24/11:** Nộp báo cáo Word + source code/link GitHub trước giờ đóng bài.
 
@@ -81,7 +80,6 @@ Mỗi thành viên phải tự viết phần **đóng góp trong báo cáo Word*
 ```bash
 pip install -r requirements.txt
 streamlit run app/main.py
-python -m unittest discover -s tests -v
 ```
 
 ## Báo cáo theo yêu cầu giảng viên
@@ -96,6 +94,10 @@ python -m unittest discover -s tests -v
 8. Tài liệu tham khảo
 
 **Đóng góp mới nên nêu ở mức phù hợp:** ứng dụng luật IF–THEN với ngưỡng phụ thuộc tốc độ; minh họa kết quả qua các tình huống. Không tuyên bố phát minh thuật toán hay có dữ liệu cảm biến thật.
+
+## Bàn giao code kèm Markdown
+
+Mỗi người tạo `docs/code/TV1.md` … `docs/code/TV5.md` trong PR riêng, trả lời ngắn: (1) Mình làm chức năng gì? (2) Hàm nào chính? (3) Input/Output? (4) Cách chạy? (5) Một ví dụ kết quả thực tế? (6) Mình có thể giải thích dòng xử lý quan trọng nào? Không chép lý thuyết dài. Các tài liệu gốc Week 1 vẫn giữ nguyên.
 
 ## Git Workflow
 
