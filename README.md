@@ -99,7 +99,7 @@ Chi tiết: [Kế hoạch MVP và những khác biệt cần thống nhất](doc
 
 **Bàn giao của mỗi thành viên:** code thuộc module phụ trách + một file Markdown `docs/code/TVx.md` gồm mục đích, hàm chính, cách chạy, ví dụ input/output và phần tự giải thích (ngắn gọn). TV1 làm tài liệu tích hợp; không cần test tự động.
 
-**Git workflow:** thành viên tự nhận issue → tạo branch riêng → commit → tự test → push → Pull Request → review → merge vào `main`.
+**Git workflow:** thành viên tự nhận issue → tạo branch riêng → commit → tự chạy thử → push → Pull Request → review → merge vào `main`.
 
 ## Hồ sơ nộp
 
