@@ -135,7 +135,7 @@ data/
 docs/
   KE_HOACH_MVP_24-11.md   # Kế hoạch chung
   week 1/                 # Bản gốc 5 tài liệu, không xóa
-  code/                   # TV1.md…TV5.md, thành viên sẽ tạo
+  code/                   # <username>/README.md, thành viên sẽ tạo
 images/
   banner.svg
   architecture.svg
@@ -160,7 +160,7 @@ Vì nhóm chủ động **không dùng branch hoặc Pull Request**, mọi ngư�
 1. **Nhận issue và thông báo nhóm** file định sửa. Mỗi người chỉ sửa file thuộc mình.
 2. **Đồng bộ trước khi sửa**: `git pull --ff-only origin main`.
 3. Code và **chạy thử chức năng độc lập**; tuyệt đối không push code lỗi cú pháp.
-4. Thêm **file Markdown riêng** `docs/code/TV1.md` … `docs/code/TV5.md`, giải thích ngắn gọn hàm, input/output, cách chạy, 1 ví dụ thực tế.
+4. Thêm **file Markdown riêng** `docs/code/captainduycan-hub/README.md` … `docs/code/nguyenvc2772-sys/README.md`, giải thích ngắn gọn hàm, input/output, cách chạy, 1 ví dụ thực tế.
 5. **Ngay trước khi push**, đồng bộ lại `main` bằng `git pull --ff-only origin main`, kiểm tra `git status`; commit **chỉ những file được giao** (không dùng `git add .` khi có file của người khác).
 6. Push `main`, bình luận link commit vào issue. **Chỉ đóng issue khi người tiếp theo hoặc TV1 kiểm tra đã dùng được**.
 7. Khi lỗi non-fast-forward, xung đột hoặc không thể pull: **dừng và hỏi nhóm trưởng**, không dùng `git push --force`, không ghi đè file người khác.
@@ -198,7 +198,9 @@ Kiểm tra thực tế:
 - [W1-05 — Yêu cầu và kế hoạch kiểm thử](docs/week%201/requirements_testplan.md).
 - [Kế hoạch MVP mới](docs/KE_HOACH_MVP_24-11.md) là chuẩn thực hiện từ 17/11.
 
-**Bàn giao cá nhân:** code + `docs/code/TVx.md` + đoạn báo cáo Word về phần mình làm. Giải thích được code quan trọng hơn tài liệu dài.
+**Thư mục cá nhân:** [TV1](docs/code/captainduycan-hub/README.md) · [TV2](docs/code/foxyy163/README.md) · [TV3](docs/code/hathihongdao/README.md) · [TV4](docs/code/ledan823-spec/README.md) · [TV5](docs/code/nguyenvc2772-sys/README.md). Mỗi người tự điền mẫu của mình sau khi viết code.
+
+**Bàn giao cá nhân:** code + `docs/code/<github-username>/README.md` + đoạn báo cáo Word về phần mình làm. Giải thích được code quan trọng hơn tài liệu dài.
 
 **Báo cáo chung theo mẫu giảng viên:** 1. Tên đề tài; 2. Mục lục; 3. Phân công & đóng góp 5 người; 4. Phân tích bài toán; 5. Thuật toán/pseudocode; 6. Giao diện & kết quả demo thật; 7. Phụ lục (nếu có); 8. Tài liệu tham khảo.
 
