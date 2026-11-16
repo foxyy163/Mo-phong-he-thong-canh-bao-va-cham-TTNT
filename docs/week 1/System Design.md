@@ -1,3 +1,59 @@
+# System Design — Quy ước giao tiếp MVP (bản cập nhật)
+
+> **Cập nhật 17/11/2026 — dùng cho giai đoạn code trước hạn 24/11.** [README chính](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/README.md) và [kế hoạch MVP](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/docs/KE_HOACH_MVP_24-11.md) là chuẩn triển khai hiện hành. Phần thiết kế Week 1 gốc nằm ở cuối file, chỉ để tham khảo quá trình làm bài. Nếu có khác biệt, **ưu tiên quy ước MVP phía trên**. Không cần REST API, Docker, SQL, mô phỏng 3D, branch/PR hay unit test tự động.
+
+## 1. Contract chung cho mọi thành viên
+
+- `speed_kmh`, `distance_m`: số hữu hạn, không âm, đơn vị km/h và m. Lỗi → AI ném `ValueError`; trường hợp khoảng cách **0 m → DANGER** theo quyết định MVP.
+- AI: `assess_risk(speed_kmh, distance_m)` từ `src/warning_engine.py`.
+- AI trả `dict` chứa `level` (chỉ `SAFE/WARNING/DANGER`), `reason`, `rule_id`, `stopping_distance_m`, `warning_distance_m`.
+- Simulator: `load_scenarios()` từ `src/simulator.py`, đọc duy nhất `data/scenarios.csv`.
+- CSV header: `scenario_id,name,speed_kmh,distance_m,expected_action`. Số tốc độ/khoảng cách được đổi sang `float`.
+- Comparison: `compare_scenarios(scenarios)` từ `src/comparison.py`; trả danh sách có `actual_level` và `status` PASS/FAIL/ERROR, giữ đủ thông tin kịch bản.
+- UI: `app/main.py` chỉ gọi các hàm trên và ánh xạ mức thành thông báo xanh/vàng/đỏ; không tự viết luật AI.
+
+## 2. Sơ đồ tuần tự để triển khai
+
+```mermaid
+sequenceDiagram
+    participant UI as TV4 — UI
+    participant SIM as TV3 — Simulator
+    participant CMP as TV5 — Comparison
+    participant AI as TV2 — AI
+    UI->>SIM: load_scenarios()
+    SIM-->>UI: list[dict]
+    UI->>CMP: compare_scenarios(scenarios)
+    loop Mỗi kịch bản
+        CMP->>AI: assess_risk(speed_kmh, distance_m)
+        AI-->>CMP: level, reason, rule_id
+    end
+    CMP-->>UI: Danh sách kết quả PASS/FAIL/ERROR
+    UI->>AI: assess_risk(input từ người dùng)
+    AI-->>UI: Kết quả cảnh báo
+```
+
+## 3. Dữ liệu ví dụ chung
+
+```csv
+scenario_id,name,speed_kmh,distance_m,expected_action
+SC01,An toàn,30,30,SAFE
+SC02,Cảnh báo,30,20,WARNING
+SC03,Nguy hiểm,30,10,DANGER
+```
+
+Ngưỡng theo W1-02: `D_stop = v*1 + v**2/(2*5)`; `D_warning=1.5*D_stop`, với `v=speed_kmh/3.6`. Không làm tròn trước khi so sánh. Các thông số chỉ phục vụ mô phỏng.
+
+## 4. Những phần thiết kế Week 1 không còn bắt buộc
+
+- Không xây dựng `contracts.py`, `orchestrator.py`, `test_contract.py`, `test_orchestrator.py` hay cấu trúc tầng phức tạp.
+- Không yêu cầu Pull Request hoặc unit test: mỗi người code đúng file, chạy thử thủ công, commit `main`, kèm `docs/code/TVx.md`.
+- Kết quả `distance_m=0` thống nhất là `DANGER`, thay thế ý tưởng cũ cho là input lỗi.
+
+---
+
+<details>
+<summary>📚 Xem bản thiết kế Week 1 gốc (lưu để đối chiếu quá trình làm)</summary>
+
 # Week 1 – System Design
 
 > **Dự án:** Mô phỏng hệ thống cảnh báo va chạm (Forward Collision Warning – FCW)
@@ -700,3 +756,6 @@ flowchart LR
 ```
 
 Mục tiêu của `system_design.md` là bảo đảm cả 5 thành viên dùng cùng một quy ước. Điều kiện để tài liệu này trở thành cơ sở chung cho code Week 2 là **bộ kịch bản và bộ luật được thống nhất** (mục 9), vì đây là chỗ các tài liệu hiện đang lệch nhau nhiều nhất.
+
+
+</details>
