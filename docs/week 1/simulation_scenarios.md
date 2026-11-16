@@ -1,3 +1,37 @@
+# W1-03 — Dữ liệu và kịch bản mô phỏng (MVP hiện hành)
+
+> **Cập nhật 17/11/2026 — dùng cho giai đoạn code trước hạn 24/11.** [README chính](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/README.md) và [kế hoạch MVP](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/docs/KE_HOACH_MVP_24-11.md) là chuẩn triển khai hiện hành. Phần thiết kế Week 1 gốc nằm ở cuối file, chỉ để tham khảo quá trình làm bài. Nếu có khác biệt, **ưu tiên quy ước MVP phía trên**. Không cần REST API, Docker, SQL, mô phỏng 3D, branch/PR hay unit test tự động.
+
+## Công việc TV3
+
+1. Hoàn thiện `data/scenarios.csv` theo chuẩn 5 cột thống nhất.
+2. Viết hàm `load_scenarios()` trong `src/simulator.py` dùng `csv.DictReader`; kết quả `list[dict]` với `speed_kmh` và `distance_m` là `float`.
+3. Không giữ danh sách `SCENARIOS` hard-code khác với CSV.
+4. Chạy thử đọc đủ ít nhất ba tình huống, rồi bàn giao dict cho TV5; không tự viết so sánh PASS/FAIL (TV5 phụ trách).
+5. Tạo `docs/code/TV3.md` giải thích cấu trúc CSV, cách nạp và ví dụ đọc dữ liệu.
+
+## CSV chung để tránh lệch kết quả
+
+```csv
+scenario_id,name,speed_kmh,distance_m,expected_action
+SC01,An toàn,30,30,SAFE
+SC02,Cảnh báo,30,20,WARNING
+SC03,Nguy hiểm,30,10,DANGER
+```
+
+| Kịch bản | Kỳ vọng | Lý do |
+|---|---|---|
+| SC01 | SAFE | 30 m lớn hơn ngưỡng cảnh báo với 30 km/h |
+| SC02 | WARNING | 20 m nằm giữa ngưỡng dừng và ngưỡng cảnh báo |
+| SC03 | DANGER | 10 m nhỏ hơn khoảng cách dừng |
+
+**Không dùng** ví dụ cũ `60 km/h, 25 m → WARNING`: theo luật W1-02 hiện hành, tình huống này phải là **DANGER**. CSV cần đồng bộ với AI trước khi TV5 làm phần so sánh.
+
+---
+
+<details>
+<summary>📚 Xem bản thiết kế Week 1 gốc (lưu để đối chiếu quá trình làm)</summary>
+
 THIẾT KẾ DỮ LIỆU VÀ KỊCH BẢN MÔ PHỎNG (SIMULATION_SCENARIOS)
 
 • Đề tài: Mô phỏng hệ thống cảnh báo va chạm (Forward Collision Warning System)
@@ -52,3 +86,6 @@ SC_04_TEST_DIST	80.0	80.0	SAFE
    • In ra màn hình trạng thái “PASS” nếu kết quả trùng khớp hoàn toàn và “FAIL” nếu thuật toán AI trả về sự sai lệch logic.
 • Công tác phối hợp với AI Developer: cần thống nhất chặt chẽ với thành viên phụ trách AI về công thức đánh giá rủi ro (dùng thời gian va chạm – TTC hay phanh khoảng cách) và các mốc ngưỡng chuyển đổi cụ thể để đảm bảo thông số trong kịch bản khớp tuyệt đối với code AI.
 
+
+
+</details>
