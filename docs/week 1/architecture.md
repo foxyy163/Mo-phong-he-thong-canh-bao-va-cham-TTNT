@@ -1,3 +1,47 @@
+# W1-01 — Kiến trúc và tích hợp (MVP hiện hành)
+
+> **Cập nhật 17/11/2026 — dùng cho giai đoạn code trước hạn 24/11.** [README chính](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/README.md) và [kế hoạch MVP](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/blob/main/docs/KE_HOACH_MVP_24-11.md) là chuẩn triển khai hiện hành. Phần thiết kế Week 1 gốc nằm ở cuối file, chỉ để tham khảo quá trình làm bài. Nếu có khác biệt, **ưu tiên quy ước MVP phía trên**. Không cần REST API, Docker, SQL, mô phỏng 3D, branch/PR hay unit test tự động.
+
+## Phạm vi và trách nhiệm của TV1
+
+- Chốt chữ ký hàm cùng TV2–TV5, nhắc các thành viên không tự đổi tên key.
+- Giữ các file đã có: `app/main.py` (TV4), `src/warning_engine.py` (TV2), `src/simulator.py` và `data/scenarios.csv` (TV3); TV5 bổ sung `src/comparison.py`.
+- **Không tạo** `src/orchestrator.py`, `src/contracts.py` hoặc một tầng backend riêng. Giao diện gọi trực tiếp 3 hàm theo contract.
+- Sau khi các module được đưa lên `main`, chạy ứng dụng, yêu cầu đúng owner sửa lỗi nếu có. Tổng hợp nội dung Word do 5 người cung cấp.
+
+## Kiến trúc đã chốt
+
+```mermaid
+flowchart TD
+    U["Người dùng"] --> UI["app/main.py — TV4"]
+    UI --> AI["src/warning_engine.py — TV2"]
+    UI --> SIM["src/simulator.py — TV3"]
+    SIM --> CSV[("data/scenarios.csv")]
+    UI --> CMP["src/comparison.py — TV5"]
+    CMP --> AI
+```
+
+## Quy ước không được tự đổi
+
+| Thành phần | Hàm / dữ liệu | Đầu ra |
+|---|---|---|
+| AI | `assess_risk(speed_kmh, distance_m)` | dict: `level, reason, rule_id, stopping_distance_m, warning_distance_m` |
+| CSV | `load_scenarios()` | danh sách dict: `scenario_id,name,speed_kmh,distance_m,expected_action` |
+| So sánh | `compare_scenarios(scenarios)` | danh sách dict có `actual_level,status` và dữ liệu kịch bản |
+| UI | `streamlit run app/main.py` | giao diện cảnh báo và bảng đối chiếu |
+
+Quy trình: **TV1 chốt contract → TV2 & TV3 → TV5 → TV4 → TV1 nghiệm thu**. TV1 chốt hợp đồng hàm ngày 17/11 và kiểm tra demo tổng thể ngày 21–22/11.
+
+## Bàn giao và vấn đáp
+
+- `README.md` rõ cách chạy; `docs/code/TV1.md` giải thích luồng tích hợp và một kết quả chạy thật; phần kiến trúc và phân công trong Word.
+- Có thể trả lời: tại sao không cần backend, dữ liệu đi qua các file thế nào, nguyên nhân thường gặp khi ghép code, cách tránh ghi đè khi cùng push `main`.
+
+---
+
+<details>
+<summary>📚 Xem bản thiết kế Week 1 gốc (lưu để đối chiếu quá trình làm)</summary>
+
 # W1-01 – Thiết kế kiến trúc hệ thống và quy ước giao tiếp module
 
 > **Dự án:** Mô phỏng hệ thống cảnh báo va chạm (Forward Collision Warning – FCW)
@@ -688,3 +732,6 @@ distance_m: float                              reason  : str
 ```
 
 Contract này là cơ sở để 5 thành viên code độc lập trong Week 2 và ghép lại mà không cần sửa logic của nhau.
+
+
+</details>
