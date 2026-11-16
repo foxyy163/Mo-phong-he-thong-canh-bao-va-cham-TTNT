@@ -12,7 +12,7 @@ Chỉ sử dụng **một trang** `app/main.py`, không làm HTML/CSS riêng ho�
 - [ ] Gọi `load_scenarios()` và `compare_scenarios(scenarios)` để chọn kịch bản và hiển thị bảng đối chiếu.
 - [ ] Bắt `ValueError`/lỗi CSV và hiển thị thông báo dễ hiểu, không crash.
 - [ ] Đảm bảo import `src.*` không lỗi khi chạy bằng lệnh trên.
-- [ ] Chụp ảnh giao diện thật và tạo `docs/code/TV4.md` với cách chạy, ví dụ input/output, giải thích các widget.
+- [ ] Chụp ảnh giao diện thật và tạo `docs/code/ledan823-spec/README.md` với cách chạy, ví dụ input/output, giải thích các widget.
 
 ## Quy trình nối module
 
