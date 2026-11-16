@@ -65,7 +65,7 @@ Với `speed_kmh=0, distance_m=0` cũng trả `DANGER` theo quy ước mô phỏ
 | TV2 — luật cảnh báo | W1-02 / warning_rules.md | src/warning_engine.py | 3 mức đúng công thức và trường hợp biên |
 | TV3 — mô phỏng CSV | W1-03 / simulation_scenarios.md | src/simulator.py, data/scenarios.csv | ≥3 kịch bản, so sánh expected/actual |
 | TV4 — giao diện | W1-04 / ui_design.md | app/main.py | Nhập tay/chọn kịch bản, hiển thị nhãn-màu-lý do |
-| TV5 — đối chiếu & kết quả | W1-05 / requirements_testplan.md | src/comparison.py (tạo mới), docs/code/TV5.md | So sánh expected/actual, chạy thử 3 mức và báo cáo kết quả |
+| TV5 — đối chiếu & kết quả | W1-05 / requirements_testplan.md | src/comparison.py (tạo mới), docs/code/nguyenvc2772-sys/README.md | So sánh expected/actual, chạy thử 3 mức và báo cáo kết quả |
 
 Mỗi thành viên phải tự viết phần **đóng góp trong báo cáo Word** và hiểu code của mình để vấn đáp.
 
@@ -100,8 +100,8 @@ streamlit run app/main.py
 
 ## Bàn giao code kèm Markdown
 
-Mỗi người tạo `docs/code/TV1.md` … `docs/code/TV5.md` trong PR riêng, trả lời ngắn: (1) Mình làm chức năng gì? (2) Hàm nào chính? (3) Input/Output? (4) Cách chạy? (5) Một ví dụ kết quả thực tế? (6) Mình có thể giải thích dòng xử lý quan trọng nào? Không chép lý thuyết dài. Các tài liệu gốc Week 1 vẫn giữ nguyên.
+Mỗi người tạo `docs/code/captainduycan-hub/README.md` … `docs/code/nguyenvc2772-sys/README.md` trong PR riêng, trả lời ngắn: (1) Mình làm chức năng gì? (2) Hàm nào chính? (3) Input/Output? (4) Cách chạy? (5) Một ví dụ kết quả thực tế? (6) Mình có thể giải thích dòng xử lý quan trọng nào? Không chép lý thuyết dài. Các tài liệu gốc Week 1 vẫn giữ nguyên.
 
 ## Git Workflow
 
-Week 1 Markdown giữ nguyên trên `main`. Từ giai đoạn code, mỗi người chỉ sửa file được giao và `docs/code/TVx.md`, tự chạy thử, `git pull --ff-only origin main` trước khi sửa/và trước khi push; commit đúng file, push trực tiếp `main`, bình luận link commit vào issue. TV1 kiểm tra kết quả trước khi đóng issue. Nếu lỗi non-fast-forward hoặc conflict thì dừng và báo nhóm trưởng, **không force push/ghi đè file người khác**.
+Week 1 Markdown giữ nguyên trên `main`. Từ giai đoạn code, mỗi người chỉ sửa file được giao và `docs/code/<github-username>/README.md`, tự chạy thử, `git pull --ff-only origin main` trước khi sửa/và trước khi push; commit đúng file, push trực tiếp `main`, bình luận link commit vào issue. TV1 kiểm tra kết quả trước khi đóng issue. Nếu lỗi non-fast-forward hoặc conflict thì dừng và báo nhóm trưởng, **không force push/ghi đè file người khác**.
