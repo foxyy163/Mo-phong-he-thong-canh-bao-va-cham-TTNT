@@ -14,7 +14,7 @@ compare_scenarios(scenarios: list[dict]) -> list[dict]
 - Với mỗi kịch bản, gọi `assess_risk(speed_kmh, distance_m)` của TV2 (không tự chép luật).
 - So `expected_action` với `actual_level`: bằng nhau → `PASS`, khác nhau → `FAIL`, kịch bản lỗi → `ERROR`.
 - Trả danh sách dict giữ `scenario_id,name,speed_kmh,distance_m,expected_action` và thêm `actual_level,status`.
-- Tạo `docs/code/TV5.md` giải thích logic so sánh và cách chạy với bảng kết quả thực.
+- Tạo `docs/code/nguyenvc2772-sys/README.md` giải thích logic so sánh và cách chạy với bảng kết quả thực.
 
 ## Bảng kiểm tra tay bắt buộc
 
