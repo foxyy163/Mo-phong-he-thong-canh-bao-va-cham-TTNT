@@ -46,7 +46,7 @@ python src/simulator.py
         |             |'An toàn',        |
         |             |'speed_kmh': 30.0,|
         |             |'expected_action':| 
-        |             |'SAFE'}           |
+        |             |'SAFE'}           |  
 | 2     |SC02,Cảnh báo|Trả về đúng dict  |☑
         |30,20,WARNING| với speend_kmh:  |
         |và SC03,Nguy | 30.0,distance_m: |
@@ -54,6 +54,7 @@ python src/simulator.py
         |DANGER       |10.0(DANGER)      |
 
 **Ảnh minh họa (nếu có):** lưu cùng thư mục này và chèn đường dẫn tương đối, ví dụ `![Kết quả](ket-qua.png)`.
+![alt text](image-1.png)
 
 ## 4. Câu hỏi tự chuẩn bị vấn đáp
 
