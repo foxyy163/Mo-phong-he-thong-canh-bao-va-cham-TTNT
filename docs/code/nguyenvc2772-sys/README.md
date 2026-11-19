@@ -107,7 +107,7 @@ git pull --ff-only origin main
 python -m src.comparison
 ```
 
-> Cũng chạy được bằng `python src/comparison.py`. Lệnh `python -m src.comparison` là cách chuẩn vì giống cách giao diện import module. Chỉ dùng thư viện chuẩn của Python nên không cần cài thêm gói nào.
+> Cũng chạy được bằng `python src/comparison.py`. Lệnh `python -m src.comparison` là cách chuẩn vì giống cách giao diện import module. Chỉ dùng thư viện chuẩn của Python nên không cần cài thêm gói nào. Trên macOS/Linux dùng `python3` thay cho `python`.
 
 **Kết quả chạy thật** (với `src/warning_engine.py` của TV2 và `data/scenarios.csv` của TV3 trên `main`, commit `4915ebf`):
 
@@ -174,12 +174,9 @@ Chạy trên `main` (commit `4915ebf`):
 - **Tham số cố định theo giả định học tập:** `t = 1 s`, `a = 5 m/s²`, `k = 1.5`; chưa xét thời tiết, mặt đường, xe khác hay cảm biến thật (theo README của TV2). Hệ thống chỉ phục vụ học tập, không dùng cho xe thật.
 - **Bộ 12 test case trong bản thiết kế Week 1 gốc của W1-05 dùng ngưỡng cũ (1,5 s / 3 s)**, nằm trong phần tham khảo của `docs/week 1/requirements_testplan.md`. Chạy với công thức MVP hiện hành, trong 8 ca bình thường và biên (TC-01 đến TC-08) có 6 ca cho cùng kết quả, riêng **TC-02** (60 km/h, 35 m) và **TC-08** (72 km/h, 60 m) ra `DANGER` thay vì `WARNING`. Theo chỉ dẫn của nhóm, quy ước MVP được ưu tiên; đây không phải lỗi code. Ngoài ra Week 1 từng đề xuất giới hạn tốc độ ≤ 200 và khoảng cách ≤ 500, còn code MVP chỉ yêu cầu số hữu hạn không âm.
 
-**Ảnh minh họa (nếu có):** lưu cùng thư mục này và chèn đường dẫn tương đối, ví dụ `![Kết quả](ket-qua.png)`.
+**Ảnh minh họa:** kết quả chạy thật lệnh `python3 -m src.comparison` trên bản tải về từ `main` (5/5 kịch bản `PASS`).
 
-<!-- Chụp màn hình terminal sau khi chạy `python -m src.comparison`, lưu thành ket-qua.png cùng thư mục, rồi bỏ dấu comment dòng dưới -->
-<!-- ![Kết quả chạy so sánh](ket-qua.png) -->
-<img width="686" height="224" alt="ket-qua" src="https://github.com/user-attachments/assets/c640d58a-d0e1-4a8c-9442-d9fd02edc032" />
-
+![Kết quả chạy so sánh](ket-qua.png)
 
 ## 4. Câu hỏi tự chuẩn bị vấn đáp
 
@@ -256,10 +253,11 @@ Những điều cần nhớ khi hiển thị:
 
 ### Danh sách kiểm tra bàn giao
 
-- [ ] Code đã đưa lên `main`, đúng file được phân công.
+- [x] Code đã đưa lên `main`, đúng file được phân công.
 - [x] Chạy thử được, không còn lỗi cú pháp.
 - [x] README này đã thay các mục `TODO` / `_[Điền]_` bằng nội dung thật.
 - [ ] Đã ghi đường dẫn commit trong [issue #10](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/issues/10).
 - [ ] Đã thông báo thành viên phụ thuộc để họ tiếp tục công việc.
 
-**Commit code:** _[Dán link commit tại đây sau khi push.]_
+**Commit code:** [9426984](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/commit/9426984a84c27d0fe4b73147127d3ad85665a267) — thêm `src/comparison.py`.  
+**Commit tài liệu:** [6ba9a6a](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/commit/6ba9a6a1266f4351db3e0a9b0575f24ed261fae0) — README giải thích (ảnh kết quả `ket-qua.png` nằm cùng thư mục).
