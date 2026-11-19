@@ -65,7 +65,7 @@ streamlit run app/main.py
 - [x] Code đã đưa lên `main`, đúng file được phân công.
 - [x] Chạy thử được, không còn lỗi cú pháp.
 - [x] README này đã thay các mục `TODO` / `_[Điền]_` bằng nội dung thật.
-- [ ] Đã ghi đường dẫn commit trong [issue #11](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/issues/11).
-- [ ] Đã thông báo thành viên phụ thuộc để họ tiếp tục công việc.
+- [x] Đã ghi đường dẫn commit trong [issue #11](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/issues/11).
+- [x] Đã thông báo thành viên phụ thuộc để họ tiếp tục công việc.
 
-**Commit code:** _[Dán link commit tại đây sau khi hoàn thành.]_
+**Commit code:** https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/commit/bb1abfc4d8e20c554754726bb07bf2402d5b10e6
