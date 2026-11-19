@@ -36,24 +36,29 @@ streamlit run app/main.py
 
 | Ví dụ | Input | Kết quả thực tế | Đã kiểm tra? |
 |---|---|---|---|
-| 1 | _[Điền]_ | _[Điền]_ | ☐ |
-| 2 | _[Điền]_ | _[Điền]_ | ☐ |
+| 1 | speed_kmh = 30, distance_m = 30 | Trạng thái SAFE (xanh) hiển thị qua st.success cùng mã luật và lý do tương ứng | [x] |
+| 2 | speed_kmh = 30, distance_m = 20 | Trạng thái WARNING (vàng) hiển thị qua st.warning cùng mã luật và lý do tương ứng | [x] |
+| 3 | speed_kmh = 30, distance_m = 10 | Trạng thái DANGER (đỏ) hiển thị qua st.error cùng mã luật và lý do tương ứng | [x] |
+| 4 | Nhập giá trị âm hoặc không hợp lệ gây ValueError | Hiển thị thông báo lỗi thân thiện qua st.error mà không làm sập ứng dụng | [x] |
 
 **Ảnh minh họa (nếu có):** lưu cùng thư mục này và chèn đường dẫn tương đối, ví dụ `![Kết quả](ket-qua.png)`.
-
+![SAFE](safe.png)
+![WARNING](warning.png)
+![DANGER](danger.png)
+![ERROR](error.png)
 ## 4. Câu hỏi tự chuẩn bị vấn đáp
 
 1. Vì sao dùng Streamlit?
-   - **Trả lời:** _[Tự trình bày ngắn gọn theo code mình viết.]_
+   - **Trả lời:** Streamlit cho phép dựng nhanh giao diện web tương tác trực tiếp bằng Python, phù hợp để nhập thông số tốc độ/khoảng cách, chọn kịch bản và hiển thị kết quả đánh giá rủi ro cùng bảng đối chiếu mà không cần tách riêng frontend phức tạp.
 
 2. Giao diện gọi hàm AI và Simulator thế nào?
-   - **Trả lời:** _[Tự trình bày ngắn gọn theo code mình viết.]_
+   - **Trả lời:** Giao diện gọi trực tiếp assess_risk(speed_kmh, distance_m) từ src.warning_engine để lấy kết quả đánh giá rủi ro, gọi load_scenarios() để lấy danh sách kịch bản từ TV3, và gọi compare_scenarios(scenarios) từ src.comparison (TV5) để hiển thị bảng so sánh; giao diện không tự sao chép luật cảnh báo hay đọc lại CSV bằng đoạn code riêng.
 
 3. SAFE/WARNING/DANGER được hiển thị bằng màu nào?
-   - **Trả lời:** _[Tự trình bày ngắn gọn theo code mình viết.]_
+   - **Trả lời:** SAFE hiển thị bằng st.success (màu xanh), WARNING hiển thị bằng st.warning (màu vàng), và DANGER hiển thị bằng st.error (màu đỏ), đi kèm mã luật và lý do.
 
 4. Có thể chạy demo nhập tay và kịch bản ra sao?
-   - **Trả lời:** _[Tự trình bày ngắn gọn theo code mình viết.]_
+   - **Trả lời:** Chạy streamlit run app/main.py từ thư mục gốc repo, nhập lần lượt (30, 30) cho SAFE, (30, 20) cho WARNING, (30, 10) cho DANGER rồi bấm Đánh giá; ở phần kịch bản bên dưới, chọn kịch bản từ danh sách của TV3, bấm Chạy kịch bản đã chọn và xem bảng đối chiếu từ TV5.
 
 ## 5. Bàn giao
 
