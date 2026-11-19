@@ -62,9 +62,9 @@ streamlit run app/main.py
 
 ## 5. Bàn giao
 
-- [ ] Code đã đưa lên `main`, đúng file được phân công.
-- [ ] Chạy thử được, không còn lỗi cú pháp.
-- [ ] README này đã thay các mục `TODO` / `_[Điền]_` bằng nội dung thật.
+- [x] Code đã đưa lên `main`, đúng file được phân công.
+- [x] Chạy thử được, không còn lỗi cú pháp.
+- [x] README này đã thay các mục `TODO` / `_[Điền]_` bằng nội dung thật.
 - [ ] Đã ghi đường dẫn commit trong [issue #11](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/issues/11).
 - [ ] Đã thông báo thành viên phụ thuộc để họ tiếp tục công việc.
 
