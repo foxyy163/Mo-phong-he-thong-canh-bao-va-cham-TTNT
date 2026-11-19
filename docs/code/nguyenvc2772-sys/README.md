@@ -178,6 +178,8 @@ Chạy trên `main` (commit `4915ebf`):
 
 <!-- Chụp màn hình terminal sau khi chạy `python -m src.comparison`, lưu thành ket-qua.png cùng thư mục, rồi bỏ dấu comment dòng dưới -->
 <!-- ![Kết quả chạy so sánh](ket-qua.png) -->
+<img width="686" height="224" alt="ket-qua" src="https://github.com/user-attachments/assets/c640d58a-d0e1-4a8c-9442-d9fd02edc032" />
+
 
 ## 4. Câu hỏi tự chuẩn bị vấn đáp
 
