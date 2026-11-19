@@ -256,8 +256,8 @@ Những điều cần nhớ khi hiển thị:
 - [x] Code đã đưa lên `main`, đúng file được phân công.
 - [x] Chạy thử được, không còn lỗi cú pháp.
 - [x] README này đã thay các mục `TODO` / `_[Điền]_` bằng nội dung thật.
-- [ ] Đã ghi đường dẫn commit trong [issue #10](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/issues/10).
-- [ ] Đã thông báo thành viên phụ thuộc để họ tiếp tục công việc.
+- [x] Đã ghi đường dẫn commit trong [issue #10](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/issues/10).
+- [x] Đã thông báo thành viên phụ thuộc để họ tiếp tục công việc.
 
 **Commit code:** [9426984](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/commit/9426984a84c27d0fe4b73147127d3ad85665a267) — thêm `src/comparison.py`.  
 **Commit tài liệu:** [6ba9a6a](https://github.com/foxyy163/Mo-phong-he-thong-canh-bao-va-cham-TTNT/commit/6ba9a6a1266f4351db3e0a9b0575f24ed261fae0) — README giải thích (ảnh kết quả `ket-qua.png` nằm cùng thư mục).
